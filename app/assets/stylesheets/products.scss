@@ -83,6 +83,19 @@ main section.products-show {
       max-width: 100%;
     }
   }
+
+  .reviews {
+    color: green;
+    margin-left: 100px;
+  }
+
+  div.reviews {
+    border: 1px green solid;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 10px;
+
+  }
 }
 
 
