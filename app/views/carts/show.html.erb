@@ -32,22 +32,27 @@
       </tfoot>
     </table>
   </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <%= form_tag orders_path do %>
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-amount="<%= @cart_total * 100 %>"
-          data-name="Jungle"
-          data-description="Shawn's Jungle Order"
-          data-locale="auto"
-          data-email="yates.shawnp@gmail.com"
-          data-currency="cad">
-        </script>
-      <% end %>
+  
+  <% if cart.any? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= form_tag orders_path do %>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-amount="<%= @cart_total * 100 %>"
+            data-name="Jungle"
+            data-description="Shawn's Jungle Order"
+            data-locale="auto"
+            data-email="yates.shawnp@gmail.com"
+            data-currency="cad">
+          </script>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <h4>Your cart is currently empty.</h4>
+    <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
+  <% end %>
 
 </section>
