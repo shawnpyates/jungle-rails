@@ -1,28 +1,23 @@
-# Jungle
+# Jungle Rails
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+# Technologies Users
 
-## Setup
+Ruby, Rails 4.2, PostgreSQL, HTML, SCSS
 
-1. Fork & Clone
-2. Run `bundle install` to install dependencies
-3. Create `config/database.yml` by copying `config/database.example.yml`
-4. Create `config/secrets.yml` by copying `config/secrets.example.yml`
-5. Run `bin/rake db:reset` to create, load and seed db
-6. Create .env file based on .env.example
-7. Sign up for a Stripe account
-8. Put Stripe (test) keys into appropriate .env vars
-9. Run `bin/rails s -b 0.0.0.0` to start the server
+# Features
 
-## Stripe Testing
+- Users can view a catelogue of products on the main page that contains each products average rating 
+https://www.dropbox.com/s/xjh7urkgmqxok9p/Screenshot%202017-05-13%2015.09.49.png?dl=0
 
-Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
+- Users can click on a product to read its description/past reviews, and can also leave their own review if they're logged in
+https://www.dropbox.com/s/4gbdu6347owxkuk/Screenshot%202017-05-13%2015.10.32.png?dl=0
 
-More information in their docs: <https://stripe.com/docs/testing#cards>
+- Users can add items to their cart and make purchages 
+https://www.dropbox.com/s/sj08we8lgb83e2l/Screenshot%202017-05-13%2015.19.26.png?dl=0
 
-## Dependencies
+- Admin can log in after providing credentials and add/delete products and categories
+https://www.dropbox.com/s/4qy45e6n9qs23dd/Screenshot%202017-05-13%2015.22.18.png?dl=0
 
-* Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
-* PostgreSQL 9.x
-* Stripe
+
