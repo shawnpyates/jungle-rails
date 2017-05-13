@@ -23,20 +23,23 @@
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
 
-          <%= form_for([@product, Review.new]) do |f| %>
-          Rating (Out of 5): <%= f.select :rating, [1, 2, 3, 4, 5]  %>
-          Review: <%= f.text_area :description %>
-          <%= f.submit "Post Review" %>
+          <% if current_user %>
+            <%= form_for([@product, Review.new]) do |f| %>
+            Rating (Out of 5): <%= f.select :rating, [1, 2, 3, 4, 5]  %>
+            Review: <%= f.text_area :description %>
+            <%= f.submit "Post Review" %>
+            <% end %>
           <% end %>
 
           <% if @reviews.any? %>
             <h2 class="reviews">Customer Reviews</h2>
             <% @reviews.each do |review| %>
-                <div class="reviews">
+              <div class="reviews">
                 <dt>Rating (Out of 5)</dt>
                 <dd><%= review.rating %></dd>  
                 <dt>Review</dt>
                 <dd><%= review.description %></dd>
+                <%= link_to fa_icon('trash'), ([@product, review]), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
               </div>
             <% end %>
           <% end %>          

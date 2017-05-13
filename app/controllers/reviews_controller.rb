@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 
+  before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   def create
     product = Product.find(params[:product_id])
@@ -12,7 +13,16 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @review.destroy
+    redirect_to product_url(@review.product), notice: 'Review was successfully destroyed.'
+  end
+
   private
+    def set_review
+      @review = Review.find(params[:id])
+    end
+
     def review_params
       params.require(:review).permit(:rating, :description)
     end
