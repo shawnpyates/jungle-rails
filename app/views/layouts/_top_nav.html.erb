@@ -27,7 +27,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-       <li class="dropdown col-sm-4">
+       <li class="dropdown col-sm-3">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
             <span class="text-danger"><%= fa_icon 'lock', text: 'Admin' %></span>
@@ -39,15 +39,15 @@
             <li><%= link_to 'Categories', [:admin, :categories] %></li>
           </ul>
         </li>
-        <li class="col-sm-4">
+        <li class="col-sm-3">
           <%= link_to cart_path do %>
             <%= fa_icon "shopping-cart" %> My Cart (<%= cart.size %>)
           <% end %>
         </li>
           <% if current_user %>
-            <li class="col-sm-2">Signed in as <%= current_user.name %></li> <li class="col-sm-2"><%= link_to "Logout", '/logout' %></li>
+            <li class="col-sm-3" style=margin-top:15px>Signed in as <%= current_user.name %></li> <li class="col-sm-2"><%= link_to "Logout", '/logout' %></li>
           <% else %>
-            <li class="col-sm-2"><%= link_to 'Login', '/login' %></li> <li class="col-sm-2"><%= link_to "Signup", '/signup' %> </li>
+            <li class="col-sm-3"><%= link_to 'Login', '/login' %></li> <li class="col-sm-2"><%= link_to "Signup", '/signup' %> </li>
           <% end %>
       </ul>
     </div>

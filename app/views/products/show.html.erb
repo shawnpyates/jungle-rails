@@ -22,27 +22,38 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
-
-          <% if current_user %>
-            <%= form_for([@product, Review.new]) do |f| %>
-            Rating (Out of 5): <%= f.select :rating, [1, 2, 3, 4, 5]  %>
-            Review: <%= f.text_area :description %>
-            <%= f.submit "Post Review" %>
-            <% end %>
+          <% if @product.set_average_score %>
+            <dt>Average Rating</dt>
+            <dd>
+              <i class="fa fa-star" aria-hidden="true" style=margin-bottom:10px;margin-right:5px></i>
+              <span><%= @product.set_average_score.round(1) %></span>
+            </dd>
           <% end %>
-
-          <% if @reviews.any? %>
-            <h2 class="reviews">Customer Reviews</h2>
-            <% @reviews.each do |review| %>
-              <div class="reviews">
-                <dt>Rating (Out of 5)</dt>
-                <dd><%= review.rating %></dd>  
-                <dt>Review</dt>
-                <dd><%= review.description %></dd>
-                <%= link_to fa_icon('trash'), ([@product, review]), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
-              </div>
+          <div class="reviews">
+            <% if current_user %>
+              <h4><u>Please give us your feedback on this item.</u></h3>
+              <%= form_for([@product, Review.new]) do |f| %>
+              <p> Rating (Out of 5): <%= f.select :rating, [1, 2, 3, 4, 5]  %></p>
+              <p>Review: <%= f.text_area :description %></p>
+              <p><%= f.submit "Post Feedback" %></p>
+              <% end %>
             <% end %>
-          <% end %>          
+
+            <% if @reviews.any? %>
+              <h4 class="past-reviews"><u>Previous Customer Feedback</u></h3>
+              <% @reviews.each do |review| %>
+                <div class="past-reviews">
+                  <% if current_user && review.user_id == current_user.id %>
+                    <%= link_to fa_icon('trash'), ([@product, review]), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+                  <% end %>
+                  <dt>Rating (Out of 5):</dt>
+                  <dd><%= review.rating %></dd>  
+                  <dt>Review:</dt>
+                  <dd><%= review.description %></dd>
+                </div>
+              <% end %>
+            <% end %>
+          </div>          
         </dl>
       </div>
     </div>
